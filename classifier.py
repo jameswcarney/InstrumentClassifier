@@ -9,8 +9,9 @@ from sklearn.ensemble import RandomForestClassifier
 import librosa
 from sklearn.utils.multiclass import unique_labels
 
+# file = "path/to/file.wav"
 
-with open('Classifier/Models/random_forest_RF.pickle', 'rb') as f:
+with open('Models/random_forest_RF.pickle', 'rb') as f:
     clf_rf = pickle.load(f)
     
 def extract_features(file):
@@ -280,3 +281,7 @@ def graph_features(sample):
     plt.legend()
     plt.savefig('static/plots/spectral_rolloff.png')
     plt.close()
+
+features = extract_features(file)
+graph_features(file)
+classify_sample(file, features)
